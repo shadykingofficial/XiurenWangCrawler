@@ -2,10 +2,12 @@
 .DS_Store
 common/src/main/resources/
 common/target/
-crawler/src/main/java/
+common/*.iml
 crawler/src/test/
 crawler/target/
+crawler/*.iml
 msgrevicer/src/test/
 msgrevicer/target/
+msgrevicer/*.iml
 *.iml
 .idea
