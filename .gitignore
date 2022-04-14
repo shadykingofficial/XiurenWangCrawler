@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+common/src/main/resources/
+common/target/
+crawler/src/main/java/
+crawler/src/test/
+crawler/target/
+msgrevicer/src/test/
+msgrevicer/target/
+*.iml
+.idea

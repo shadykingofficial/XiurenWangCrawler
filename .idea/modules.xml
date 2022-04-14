@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Crawler4jDemo.iml" filepath="$PROJECT_DIR$/Crawler4jDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crawler/crawler.iml" filepath="$PROJECT_DIR$/crawler/crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msgrevicer/msgrevicer.iml" filepath="$PROJECT_DIR$/msgrevicer/msgrevicer.iml" />
     </modules>
   </component>
 </project>
