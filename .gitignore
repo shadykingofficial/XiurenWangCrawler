@@ -10,4 +10,5 @@ msgrevicer/src/test/
 msgrevicer/target/
 msgrevicer/*.iml
 *.iml
-.idea
+.idea/
+logs/

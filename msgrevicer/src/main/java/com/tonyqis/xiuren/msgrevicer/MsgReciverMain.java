@@ -15,19 +15,17 @@ import java.util.concurrent.*;
 public  class MsgReciverMain {
 
     private static final Logger LOGGER = LogManager.getLogger(MsgReciverMain.class);
-
-    private static final ThreadPoolExecutor MSG_RECIVER_THREAD_POOL = new ThreadPoolExecutor(8,8,60, TimeUnit.SECONDS,new LinkedBlockingDeque<>(10));
-
-    public static  final ExecutorService IMG_DOWNLOAD_THREAD_POOL = Executors.newFixedThreadPool(8);
-
+    
+    private static final Executor  IMAGE_DOWNLOADER = Executors.newFixedThreadPool(4);
 
     public static void main(String[] args) throws Exception {
         LOGGER.info("消息接收器开始启动");
         MQUtil.initConnectionFacotory();
         MQUtil.initQueue();
         RedisUtil.init();
-        new MsgReciver().run();
+        for (int i=0;i<4;i++){
+            IMAGE_DOWNLOADER.execute(new MsgReciver());
+        }
         LOGGER.info("消息接收器启动完成");
-
     }
 }

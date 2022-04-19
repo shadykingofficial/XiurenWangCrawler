@@ -5,23 +5,36 @@ import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.concurrent.TimeoutException;
 
 public class MQUtil {
 
+    private static final Logger LOGGER = LogManager.getLogger(MQUtil.class);
 
     private static ConnectionFactory mqConnectionFactory ;
 
     public static void initConnectionFacotory() throws Exception{
+        ResourceBundle bundle = ResourceBundle.getBundle("rabbit");
+        if (bundle == null) {
+            LOGGER.error("[rabbit.properties] is not found!");
+            throw new IllegalArgumentException("[rabbit.properties] is not found!");
+        }
+        for (String key : bundle.keySet()) {
+            LOGGER.debug("获取rabbit配置信息==》"+key+"="+"："+String.valueOf(bundle.getObject(key)));
+        }
         //创建连接工厂
         mqConnectionFactory=new ConnectionFactory();
         //设置参数
-        mqConnectionFactory.setHost("127.0.0.1");//主机ip
-        mqConnectionFactory.setVirtualHost("/xp1024");//虚拟主机名
-        mqConnectionFactory.setUsername("admin");//账号
-        mqConnectionFactory.setPassword("admin");//密码
+        mqConnectionFactory.setHost(bundle.getString("host"));//主机ip
+        mqConnectionFactory.setPort(Integer.parseInt(bundle.getString("port")));
+        mqConnectionFactory.setVirtualHost(bundle.getString("virtualhost"));//虚拟主机名
+        mqConnectionFactory.setUsername(bundle.getString("username"));//账号
+        mqConnectionFactory.setPassword(bundle.getString("password"));//密码
 
     }
 
